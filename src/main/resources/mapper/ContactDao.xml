@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.contactprovider.dao.ContactDao">
+    <select id="queryAllContact" resultType="com.kgc.bean.Contact">
+         select * from contact
+    </select>
+
+    <select id="queryContactByName" resultType="com.kgc.bean.Contact" parameterType="String">
+        select * from contact where cname like '%${cname}%'
+    </select>
+
+    <select id="queryContactById" parameterType="Integer" resultType="com.kgc.bean.Contact">
+        select * from contact where id=#{id}
+    </select>
+
+    <insert id="addContact">
+        insert into contact values (id,#{cname},#{mobile},#{qq},#{email},#{address})
+    </insert>
+
+    <update id="updateContact">
+        update contact set cname=#{cname},mobile=#{mobile},qq=#{qq},email=#{email},address=#{address} where id=#{id}
+    </update>
+</mapper>
